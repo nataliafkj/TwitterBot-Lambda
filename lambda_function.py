@@ -15,6 +15,16 @@ def lambda_handler(event, context):
     aws_access_key_id = os.environ['aws_access_key_id']
     aws_secret_access_key = os.environ['aws_secret_access_key']
     
+    img_url = 'link'
+    
+    response = requests.get(img_url)
+    
+    img = BytesIO(response.content)
+    
+    s3 = boto3.client('s3', 
+        aws_access_key_id=aws_access_key_id, 
+        aws_secret_access_key=aws_secret_access_key)
+      
     bucket_name = "nayeonbucket"
     
     image_numb = random.randint(1, 731)
